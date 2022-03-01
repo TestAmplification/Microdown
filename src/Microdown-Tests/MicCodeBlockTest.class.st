@@ -60,6 +60,112 @@ MicCodeBlockTest >> testCaption [
 	self assert: codeBlock captionElements size equals: 2.
 ]
 
+{ #category : #'as yet unclassified' }
+MicCodeBlockTest >> testCaption_amp_A1 [
+
+	<smallAmpCoveres:
+	'RemoveCaretOperator#MicCodeBlock#extractFirstLineFrom:#349#367'>
+	<smallAmpFrom: 'MicCodeBlockTest>>#testCaption'>
+	<madeBySmallAmp>
+	| codeBlock aClass aString |
+	aClass := self testedClass.
+	self assert: aClass asString equals: 'MicCodeBlock'.
+	codeBlock := aClass new.
+	self
+		assert: aClass asString equals: 'MicCodeBlock';
+		assert: codeBlock class equals: MicCodeBlock;
+		assert: codeBlock code isNil;
+		deny: codeBlock hasLabel;
+		deny: codeBlock hasCaption;
+		assert: codeBlock arguments class equals: OrderedDictionary;
+		assert: codeBlock arguments isCollection;
+		assert: codeBlock arguments isHealthy;
+		assert: codeBlock arguments isDictionary;
+		assert: codeBlock arguments isEmpty;
+		deny: codeBlock arguments isNotEmpty;
+		assert: codeBlock arguments capacity equals: 17;
+		assert: codeBlock arguments size equals: 0;
+		assert: codeBlock arguments keys class equals: Array;
+		assertEmpty: codeBlock arguments keys;
+		assert: codeBlock arguments isEmptyOrNil;
+		assert: codeBlock arguments keysSortedSafely class equals: Array;
+		assertEmpty: codeBlock arguments keysSortedSafely;
+		assert: codeBlock arguments values class equals: Array;
+		assertEmpty: codeBlock arguments values;
+		assert: codeBlock arguments dictionaryClass asString
+		equals: 'Dictionary';
+		assert: codeBlock arguments associations class equals: Array;
+		assertEmpty: codeBlock arguments associations;
+		deny: codeBlock arguments isSequenceable;
+		deny: codeBlock arguments notEmpty.
+	codeBlock caption: '**Here** is a nice caption.'.
+	self
+		assert: codeBlock class equals: MicCodeBlock;
+		assert: codeBlock code isNil;
+		deny: codeBlock hasLabel;
+		assert: codeBlock hasCaption;
+		assert: codeBlock arguments class equals: OrderedDictionary;
+		assert: codeBlock arguments isCollection;
+		assert: codeBlock arguments isHealthy;
+		assert: codeBlock arguments isDictionary;
+		deny: codeBlock arguments isEmpty;
+		assert: codeBlock arguments isNotEmpty;
+		assert: codeBlock arguments capacity equals: 17;
+		assert: codeBlock arguments size equals: 1;
+		assert: codeBlock arguments keys class equals: Array;
+		assert: codeBlock arguments keys size equals: 1;
+		assert: codeBlock arguments keys equals: #( #caption );
+		deny: codeBlock arguments isEmptyOrNil;
+		assert: codeBlock arguments keysSortedSafely class equals: Array;
+		assert: codeBlock arguments keysSortedSafely size equals: 1;
+		assert: codeBlock arguments keysSortedSafely equals: #( #caption );
+		assert: codeBlock arguments values class equals: Array;
+		assert: codeBlock arguments values size equals: 1;
+		assert: (codeBlock arguments values at: 1) class equals: Array;
+		assert: (codeBlock arguments values at: 1) size equals: 2;
+		assert: codeBlock arguments dictionaryClass asString
+		equals: 'Dictionary';
+		assert: codeBlock arguments associations class equals: Array;
+		assert: codeBlock arguments associations size equals: 1;
+		assert: (codeBlock arguments associations at: 1) class
+		equals: Association;
+		deny: codeBlock arguments isSequenceable;
+		assert: codeBlock arguments notEmpty.
+	aString := codeBlock extractFirstLineFrom: '```'.
+	self
+		assert: codeBlock class equals: MicCodeBlock;
+		deny: codeBlock hasCaption;
+		assert: codeBlock code isNil;
+		deny: codeBlock hasNonDefaultArguments;
+		assert: codeBlock language equals: 'Pharo';
+		deny: codeBlock hasNonDefaultLanguage;
+		assert: codeBlock arguments class equals: MicArgumentsSplitter;
+		assert: codeBlock arguments defaultValue equals: 'Pharo';
+		assert: codeBlock arguments isHealthy;
+		assert: codeBlock arguments isDictionary;
+		deny: codeBlock arguments hasNonDefaultArguments;
+		assert: codeBlock arguments capacity equals: 17;
+		assert: codeBlock arguments size equals: 1;
+		assert: codeBlock arguments keysSortedSafely class equals: Array;
+		assert: codeBlock arguments keysSortedSafely size equals: 1;
+		assert: codeBlock arguments keysSortedSafely equals: #( #language );
+		assert: codeBlock arguments keys class equals: Array;
+		assert: codeBlock arguments keys size equals: 1;
+		assert: codeBlock arguments keys equals: #( #language );
+		assert: codeBlock arguments values class equals: Array;
+		assert: codeBlock arguments values size equals: 1;
+		assert: codeBlock arguments values equals: #( 'Pharo' );
+		assert: codeBlock arguments dictionaryClass asString
+		equals: 'Dictionary';
+		deny: codeBlock arguments hasNonDefaultValue;
+		assert: codeBlock arguments associations class equals: Array;
+		assert: codeBlock arguments associations size equals: 1;
+		assert: (codeBlock arguments associations at: 1) class
+		equals: Association;
+		deny: codeBlock hasLabel;
+		assert: aString equals: ''
+]
+
 { #category : #tests }
 MicCodeBlockTest >> testCodeBlockWithNestedCodeBlock [
 	"This test shows that we can write a code block inside a code block but that the later is not interpreter."
@@ -422,6 +528,81 @@ Color >> asMorph
 	self assert: code captionElements second substring equals: ' is a class.'.
 	
 	self assert: code label equals: 'scr:asMorphInColor'.
+]
+
+{ #category : #'as yet unclassified' }
+MicCodeBlockTest >> testSingleBlockWithArgumentsWithFormat_amp_D8_L10 [
+
+	"
+	```language=pharo&caption=Getting a morph for an instance of ==Color==&label=scr:asMorphInColor
+Color >> asMorph
+    ^ Morph new color: self
+	```
+	"
+
+	<smallAmpCoveres:
+	'RemoveCaretOperator#MicCodeBlock class#defaultLanguage#18#26'>
+	<smallAmpFrom:
+	'MicCodeBlockTest>>#testSingleBlockWithArgumentsWithFormat'>
+	<madeBySmallAmp>
+	| source root code textBody argument aMicroDownParser |
+	textBody := 'Color >> asMorph
+    ^ Morph new color: self'.
+	argument := '&4ZmN±sA<U1#*D`S0Q;~%J9J(f2gLnE@bP*):AU§^K$B.qsfh&gk}my@.p;&JvPu":2'.
+	source := CodeblockMarkup , argument , String cr , textBody
+	          , String cr , CodeblockMarkup.
+	aMicroDownParser := self parser.
+	root := aMicroDownParser parse: source.
+	aMicroDownParser parse: source.
+
+
+	code := root children first.
+	self
+		assert: code class equals: MicCodeBlock;
+		deny: code hasCaption;
+		assert: code code equals: 'Color >> asMorph
+    ^ Morph new color: self';
+		assert: code hasBody;
+		assert: code hasNonDefaultArguments;
+		deny: code hasNonDefaultLanguage;
+		assert: code arguments class equals: MicArgumentsSplitter;
+		assert: code arguments defaultValue equals: 'Pharo';
+		assert: code arguments isHealthy;
+		assert: code arguments isDictionary;
+		assert: code arguments hasNonDefaultArguments;
+		assert: code arguments capacity equals: 17;
+		assert: code arguments size equals: 5;
+		assert: code arguments keysSortedSafely class equals: Array;
+		assert: code arguments keysSortedSafely size equals: 5;
+		assert: code arguments keysSortedSafely
+		equals: #( #'' #'4ZmN±sA<U1#*D`S0Q;~%J9J(f2gLnE@bP*):AU§^K$B.qsfh'
+			   #'JvPu":2' #'gk}my@.p;' #language );
+		assert: code arguments keys class equals: Array;
+		assert: code arguments keys size equals: 5;
+		assert: code arguments keys
+		equals:
+			#( #language #'' #'4ZmN±sA<U1#*D`S0Q;~%J9J(f2gLnE@bP*):AU§^K$B.qsfh'
+			   #'gk}my@.p;' #'JvPu":2' );
+		assert: code arguments values class equals: Array;
+		assert: code arguments values size equals: 5;
+		assert: code arguments values equals: #( 'Pharo' nil nil nil nil );
+		assert: code arguments dictionaryClass asString
+		equals: 'Dictionary';
+		deny: code arguments hasNonDefaultValue;
+		assert: code arguments associations class equals: Array;
+		assert: code arguments associations size equals: 5;
+		assert: (code arguments associations at: 1) class
+		equals: Association;
+		assert: (code arguments associations at: 2) class
+		equals: Association;
+		assert: (code arguments associations at: 3) class
+		equals: Association;
+		assert: (code arguments associations at: 4) class
+		equals: Association;
+		assert: (code arguments associations at: 5) class
+		equals: Association;
+		assert: code language equals: 'Pharo';
+		deny: code hasLabel
 ]
 
 { #category : #'tests - deviation' }

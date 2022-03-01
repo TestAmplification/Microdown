@@ -34,6 +34,23 @@ MicNotFoundResourceTest >> testAsForm [
 
 ]
 
+{ #category : #'as yet unclassified' }
+MicNotFoundResourceTest >> testAsForm_amp [
+
+	"SmallAmp has derived this test from `MicNotFoundResourceTest>>#testAsForm` by regenerating its assertions.
+	This test can cover this part:
+	*	In `MicNotFoundResource>> #notFoundReference` from 21 to 36:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ self reference`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicNotFoundResource#notFoundReference#21#36
+"
+
+	<madeBySmallAmp>
+	resource asForm.
+	self assert: resource notFoundReference equals: 'file:///xzyxzy.txt'
+]
+
 { #category : #testing }
 MicNotFoundResourceTest >> testAsText [
 

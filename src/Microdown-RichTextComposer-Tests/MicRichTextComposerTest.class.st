@@ -570,6 +570,28 @@ MicRichTextComposerTest >> testQuoteBlock [
 	self deny: (richText asString findString: 'foo') equals: 0
 ]
 
+{ #category : #'as yet unclassified' }
+MicRichTextComposerTest >> testQuoteBlock_amp_N0 [
+
+	"SmallAmp has derived this test from `MicRichTextComposerTest>>#testQuoteBlock` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicRichTextComposer>> #asRichText:` from 45 to 140:
+		Operation: ReplaceIfTrueIfFalseReceiverWithTrueOperator
+		Code snippet: `(aStringOrDoc isString
+	 ifTrue: [ Microdown parse: aStringOrDoc ]
+	 ifFalse: [ aStringOrDoc ])`
+		Dynamic state: {#aStringOrDoc->'> foo'}
+		Mutant id: ReplaceIfTrueIfFalseReceiverWithTrueOperator#MicRichTextComposer#asRichText:#45#140
+"
+
+	<madeBySmallAmp>
+	| src richText |
+	src := '> foo'.
+	self
+		should: [ richText := Microdown asRichText: nil ]
+		raise: MessageNotUnderstood
+]
+
 { #category : #'skipped tests' }
 MicRichTextComposerTest >> testStrikethroughFormat [ 
 	| source runs richText |

@@ -103,6 +103,28 @@ MicTextualMicrodownExporterTest >> testCodeBlockWithCaption [
 	self verifyObtain: factory blockWithParametersWithCaptionSample, String cr
 ]
 
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testCodeBlockWithCaption_amp_A20 [
+
+	<smallAmpCoveres:
+	'RemoveCaretOperator#MicTextualMicrodownExporter#visitRow:in:at:#137#204'>
+	<smallAmpCoveres:
+	'ReplaceAndReceiverWithTrueOperator#MicTextualMicrodownExporter#visitRow:in:at:#139#167'>
+	<smallAmpFrom:
+	'MicTextualMicrodownExporterTest>>#testCodeBlockWithCaption'>
+	<madeBySmallAmp>
+	| anUndefinedObject |
+	anUndefinedObject := visitor
+		                     visitRow: OrderedCollection new
+		                     in: MicTableBlock new
+		                     at: 1.
+	self
+		assert: visitor class equals: MicTextualMicrodownExporter;
+		deny: visitor inList;
+		assert: visitor contents equals: '|';
+		assert: anUndefinedObject isNil
+]
+
 { #category : #'tests-anchor' }
 MicTextualMicrodownExporterTest >> testComment [
 
@@ -152,6 +174,45 @@ MicTextualMicrodownExporterTest >> testFigureWithBold [
 MicTextualMicrodownExporterTest >> testFigureWithItalic [
 
 	self verifyObtain: factory figureItalicSample
+]
+
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testFigureWithItalic_amp_A10 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testFigureWithItalic` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #folderName` from 13 to 19:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ 'mic'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicTextualMicrodownExporter#folderName#13#19
+"
+
+	<madeBySmallAmp>
+	| aString |
+	aString := visitor folderName.
+	self assert: aString equals: 'mic'
+]
+
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testFigureWithItalic_amp_A24 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testFigureWithItalic` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #buildRowHeader:` from 80 to 97:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ builder raw: '|'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicTextualMicrodownExporter#buildRowHeader:#80#97
+"
+
+	<madeBySmallAmp>
+	| aMicMicrodownTextualBuilder |
+	aMicMicrodownTextualBuilder := visitor buildRowHeader:
+		                               OrderedCollection new.
+	self
+		assert: aMicMicrodownTextualBuilder class
+		equals: MicMicrodownTextualBuilder
 ]
 
 { #category : #'tests - figure' }
@@ -207,6 +268,27 @@ MicTextualMicrodownExporterTest >> testHeaderNewLine [
 MicTextualMicrodownExporterTest >> testHeaderWithBold [
 	
 	self verifyObtain: factory headerWithFormatSampleWithNewLine
+]
+
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testHeaderWithBold_amp_A24 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testHeaderWithBold` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #buildRowHeader:` from 80 to 97:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ builder raw: '|'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicTextualMicrodownExporter#buildRowHeader:#80#97
+"
+
+	<madeBySmallAmp>
+	| aMicMicrodownTextualBuilder |
+	aMicMicrodownTextualBuilder := visitor buildRowHeader:
+		                               OrderedCollection new.
+	self
+		assert: aMicMicrodownTextualBuilder class
+		equals: MicMicrodownTextualBuilder
 ]
 
 { #category : #'tests-header' }
@@ -365,6 +447,24 @@ MicTextualMicrodownExporterTest >> testOrderedListWithNested [
 	self verifyObtain: factory orderedListWithTwoItemsBoldFirstSample  
 ]
 
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testOrderedListWithNested_amp_A8 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testOrderedListWithNested` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #folderName` from 13 to 19:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ 'mic'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicTextualMicrodownExporter#folderName#13#19
+"
+
+	<madeBySmallAmp>
+	| aString |
+	aString := visitor folderName.
+	self assert: aString equals: 'mic'
+]
+
 { #category : #'tests - list' }
 MicTextualMicrodownExporterTest >> testOrderedListWithStrike [
 
@@ -437,6 +537,23 @@ MicTextualMicrodownExporterTest >> testPlainHeader [
 MicTextualMicrodownExporterTest >> testQuote [
 
 	self verifyObtain: factory quoteSample
+]
+
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testQuote_amp_D0_A23_L0 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testQuote` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #visitRow:in:at:` from 139 to 167:
+		Operation: ReplaceAndWithEqvMutantOperator
+		Code snippet: `(aTable hasHeader and: i = 1)`
+		Dynamic state: {#i->2}
+		Mutant id: ReplaceAndWithEqvMutantOperator#MicTextualMicrodownExporter#visitRow:in:at:#139#167
+"
+
+	<madeBySmallAmp>
+	visitor visitRow: OrderedCollection new in: MicTableBlock new at: 2.
+	self assert: visitor contents equals: '|'
 ]
 
 { #category : #'tests-anchor' }
@@ -547,6 +664,28 @@ MicTextualMicrodownExporterTest >> testUnorderedListWithMonospace [
 MicTextualMicrodownExporterTest >> testUnorderedListWithNested [
 
 	self verifyObtain: factory unorderedListWithTwoItemsNestedSample
+]
+
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testUnorderedListWithNested_amp_A23 [
+
+	<smallAmpCoveres:
+	'RemoveCaretOperator#MicTextualMicrodownExporter#visitRow:in:at:#137#204'>
+	<smallAmpCoveres:
+	'ReplaceAndReceiverWithTrueOperator#MicTextualMicrodownExporter#visitRow:in:at:#139#167'>
+	<smallAmpFrom:
+	'MicTextualMicrodownExporterTest>>#testUnorderedListWithNested'>
+	<madeBySmallAmp>
+	| anUndefinedObject |
+	anUndefinedObject := visitor
+		                     visitRow: OrderedCollection new
+		                     in: MicTableBlock new
+		                     at: 1.
+	self
+		assert: visitor class equals: MicTextualMicrodownExporter;
+		deny: visitor inList;
+		assert: visitor contents equals: '|';
+		assert: anUndefinedObject isNil
 ]
 
 { #category : #'tests - list' }

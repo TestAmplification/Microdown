@@ -36,6 +36,32 @@ styledTextFor: aString asFest'.
 	self assert: textColor color red equals: 0.
 ]
 
+{ #category : #'as yet unclassified' }
+MicCodeStylerSpecTest >> testStylerForMethod_amp_U1 [
+
+	"SmallAmp has derived this test from `MicCodeStylerSpecTest>>#testStylerForMethod` by applying some transformations and regenerating its assertions.
+	This test can cover these parts:
+	*	In `MicCodeStylerSpec class>> #codeStylerForPharo:` from 97 to 181:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ MicSmalltalkTextStyler new
+	  isForWorkspace: true;
+	  styledTextFor: aString asText`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicCodeStylerSpec class#codeStylerForPharo:#97#181
+	*	In `MicCodeStylerSpec class>> #defaultStyler:` from 111 to 144:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ self codeStylerForPharo: aString`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicCodeStylerSpec class#defaultStyler:#111#144
+"
+
+	<madeBySmallAmp>
+	| code richText blueLocation textColor |
+	code := 'blue'.
+	richText := MicCodeStylerSpec style: code asLanguage: 'blue'.
+	self assert: richText class equals: Text
+]
+
 { #category : #tests }
 MicCodeStylerSpecTest >> testStylerForSmalltalk [
 	
@@ -61,6 +87,26 @@ MicCodeStylerSpecTest >> testStylersAreRegistered [
 	| defaultStyler |
 	defaultStyler := MicCodeStylerSpec styleFor: 'blblbl'.
 	self assert: defaultStyler selector equals: #defaultStyler:
+]
+
+{ #category : #'as yet unclassified' }
+MicCodeStylerSpecTest >> testStylersAreRegistered_amp [
+
+	"SmallAmp has derived this test from `MicCodeStylerSpecTest>>#testStylersAreRegistered` by regenerating its assertions.
+	This test can cover this part:
+	*	In `MicCodeStylerSpec>> #classSymbol` from 15 to 27:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ classSymbol`
+		Dynamic state: {#classSymbol->#MicCodeStylerSpec}
+		Mutant id: RemoveCaretOperator#MicCodeStylerSpec#classSymbol#15#27
+"
+
+	<madeBySmallAmp>
+	| defaultStyler |
+	defaultStyler := MicCodeStylerSpec styleFor: 'blblbl'.
+	self
+		assert: defaultStyler class equals: MicCodeStylerSpec;
+		assert: defaultStyler classSymbol equals: #MicCodeStylerSpec
 ]
 
 { #category : #'tests - stylers' }

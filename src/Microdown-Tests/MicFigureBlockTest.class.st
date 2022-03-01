@@ -95,6 +95,41 @@ MicFigureBlockTest >> testIsNotRelativeFilePathWithUrl [
 	self assert: figure reference uri asString equals: 'http://www.pharo.org/'
 ]
 
+{ #category : #'as yet unclassified' }
+MicFigureBlockTest >> testIsNotRelativeFilePathWithUrl_amp [
+
+	"SmallAmp has derived this test from `MicFigureBlockTest>>#testIsNotRelativeFilePathWithUrl` by regenerating its assertions.
+	This test can cover these parts:
+	*	In `MicFigureBlock>> #resources` from 14 to 18:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ url`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicFigureBlock#resources#14#18
+	*	In `MicFigureBlock>> #openingDelimiter` from 21 to 44:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ FigureNameOpenerMarkup`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicFigureBlock#openingDelimiter#21#44
+	*	In `MicFigureBlock>> #kind` from 41 to 49:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ #figure`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicFigureBlock#kind#41#49
+"
+
+	<madeBySmallAmp>
+	| figure |
+	figure := (splitterClass new parse:
+		           '![caption](http://www.pharo.org)') first.
+	self
+		assert: figure hasChildren;
+		assert: figure openingDelimiter equals: '![';
+		assert: figure originUrl equals: 'http://www.pharo.org';
+		assert: figure kind equals: #figure;
+		assert: figure resources equals: 'http://www.pharo.org';
+		assert: figure hasCaption
+]
+
 { #category : #tests }
 MicFigureBlockTest >> testPrintOn [
 	| figure |

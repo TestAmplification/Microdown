@@ -224,6 +224,24 @@ MicLaTeXWriterTest >> testHeaderLevel6 [
    self parse: factory headerLevel6Sample andCheckWeGet: writer usedNewLine , '\paragraph{Foo}'
 ]
 
+{ #category : #'as yet unclassified' }
+MicLaTeXWriterTest >> testHeaderLevel6_amp_A10 [
+
+	"SmallAmp has derived this test from `MicLaTeXWriterTest>>#testHeaderLevel6` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicLaTeXWriter>> #chapterTemplateName` from 24 to 47:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ 'latexChapterTemplate'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicLaTeXWriter#chapterTemplateName#24#47
+"
+
+	<madeBySmallAmp>
+	| aString |
+	aString := writer chapterTemplateName.
+	self assert: aString equals: 'latexChapterTemplate'
+]
+
 { #category : #tests }
 MicLaTeXWriterTest >> testHorizontalLine [
 
@@ -384,6 +402,25 @@ MicLaTeXWriterTest >> testParagraphWithNested [
 	self parse: factory paragraphNestedSample andCheckWeGet:  '
 this is a \textbf{\textit{paragraph}}
 '
+]
+
+{ #category : #'as yet unclassified' }
+MicLaTeXWriterTest >> testParagraphWithNested_amp_L1_A10_A15 [
+
+	"SmallAmp has derived this test from `MicLaTeXWriterTest>>#testParagraphWithNested` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicLaTeXWriter>> #chapterTemplateName` from 24 to 47:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ 'latexChapterTemplate'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicLaTeXWriter#chapterTemplateName#24#47
+"
+
+	<madeBySmallAmp>
+	| aString |
+	aString := writer chapterTemplateName.
+	self assert: aString equals: 'latexChapterTemplate'.
+	writer protectUrl: '&'
 ]
 
 { #category : #tests }
