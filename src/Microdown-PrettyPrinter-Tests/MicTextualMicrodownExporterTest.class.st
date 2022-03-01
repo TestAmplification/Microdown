@@ -587,6 +587,28 @@ MicTextualMicrodownExporterTest >> testUnorderedListWithNested [
 	self verifyObtain: factory unorderedListWithTwoItemsNestedSample
 ]
 
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testUnorderedListWithNested_amp_A23 [
+
+	<smallAmpCoveres:
+	'RemoveCaretOperator#MicTextualMicrodownExporter#visitRow:in:at:#137#204'>
+	<smallAmpCoveres:
+	'ReplaceAndReceiverWithTrueOperator#MicTextualMicrodownExporter#visitRow:in:at:#139#167'>
+	<smallAmpFrom:
+	'MicTextualMicrodownExporterTest>>#testUnorderedListWithNested'>
+	<madeBySmallAmp>
+	| anUndefinedObject |
+	anUndefinedObject := visitor
+		                     visitRow: OrderedCollection new
+		                     in: MicTableBlock new
+		                     at: 1.
+	self
+		assert: visitor class equals: MicTextualMicrodownExporter;
+		deny: visitor inList;
+		assert: visitor contents equals: '|';
+		assert: anUndefinedObject isNil
+]
+
 { #category : #'tests - list' }
 MicTextualMicrodownExporterTest >> testUnorderedListWithStrike [
 
