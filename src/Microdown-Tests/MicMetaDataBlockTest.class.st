@@ -125,6 +125,30 @@ MicMetaDataBlockTest >> testUncorrectJSONMetaDataProducesDictionaryWithContents3
 	
 ]
 
+{ #category : #'as yet unclassified' }
+MicMetaDataBlockTest >> testUncorrectJSONMetaDataProducesDictionaryWithContents_amp [
+
+	"SmallAmp has derived this test from `MicMetaDataBlockTest>>#testUncorrectJSONMetaDataProducesDictionaryWithContents` by regenerating its assertions.
+	This test can cover this part:
+	*	In `MicMetaDataBlock class>> #keyForUnparsableContents` from 28 to 49:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ 'unparsableContents'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicMetaDataBlock class#keyForUnparsableContents#28#49
+"
+
+	<madeBySmallAmp>
+	| source root metadata |
+	source := '{
+"authors" : "S. Ducasse" 
+"title" : "Pharo by Example"
+}'.
+	metadata := (parser parse: source) children first.
+	self
+		assert: metadata body keysSortedSafely
+		equals: #( 'unparsableContents' )
+]
+
 { #category : #tests }
 MicMetaDataBlockTest >> testedClass [ 
 	^ MicMetaDataBlock 
