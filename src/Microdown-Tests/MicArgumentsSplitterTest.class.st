@@ -143,6 +143,76 @@ MicArgumentsSplitterTest >> testHasNonDefaultArguments_nonDefault [
 	self assert: subject hasNonDefaultArguments 
 ]
 
+{ #category : #'as yet unclassified' }
+MicArgumentsSplitterTest >> testHasNonDefaultArguments_nonDefault_amp_N4 [
+
+	<smallAmpCoveres:
+	'ReplaceAndReceiverWithTrueOperator#MicArgumentsSplitter#hasNonDefaultValue#75#142'>
+	<smallAmpFrom:
+	'MicArgumentsSplitterTest>>#testHasNonDefaultArguments_nonDefault'>
+	<madeBySmallAmp>
+	| subject aClass anUndefinedObject |
+	aClass := self splitter.
+	self assert: aClass asString equals: 'MicArgumentsSplitter'.
+	subject := aClass
+		           split: ''
+		           defaultArg: #language
+		           defaultValue: 'Pharo'.
+	self
+		assert: aClass asString equals: 'MicArgumentsSplitter';
+		assert: subject class equals: MicArgumentsSplitter;
+		assert: subject defaultValue equals: 'Pharo';
+		assert: subject isHealthy;
+		assert: subject isDictionary;
+		deny: subject hasNonDefaultArguments;
+		assert: subject capacity equals: 17;
+		assert: subject size equals: 1;
+		assert: subject keysSortedSafely class equals: Array;
+		assert: subject keysSortedSafely size equals: 1;
+		assert: subject keysSortedSafely equals: #( #language );
+		assert: subject keys class equals: Array;
+		assert: subject keys size equals: 1;
+		assert: subject keys equals: #( #language );
+		assert: subject values class equals: Array;
+		assert: subject values size equals: 1;
+		assert: subject values equals: #( 'Pharo' );
+		assert: subject dictionaryClass asString equals: 'Dictionary';
+		deny: subject hasNonDefaultValue;
+		assert: subject associations class equals: Array;
+		assert: subject associations size equals: 1;
+		assert: (subject associations at: 1) class equals: Association;
+		assert: (subject associations at: 1) name equals: #language;
+		assert: (subject associations at: 1) key equals: #language;
+		assert: (subject associations at: 1) value equals: 'Pharo'.
+	anUndefinedObject := subject at: #language put: nil.
+	self
+		assert: subject class equals: MicArgumentsSplitter;
+		assert: subject defaultValue isNil;
+		assert: subject isHealthy;
+		assert: subject isDictionary;
+		deny: subject hasNonDefaultArguments;
+		assert: subject capacity equals: 17;
+		assert: subject size equals: 1;
+		assert: subject keysSortedSafely class equals: Array;
+		assert: subject keysSortedSafely size equals: 1;
+		assert: subject keysSortedSafely equals: #( #language );
+		assert: subject keys class equals: Array;
+		assert: subject keys size equals: 1;
+		assert: subject keys equals: #( #language );
+		assert: subject values class equals: Array;
+		assert: subject values size equals: 1;
+		assert: subject values equals: #( nil );
+		assert: subject dictionaryClass asString equals: 'Dictionary';
+		deny: subject hasNonDefaultValue;
+		assert: subject associations class equals: Array;
+		assert: subject associations size equals: 1;
+		assert: (subject associations at: 1) class equals: Association;
+		assert: (subject associations at: 1) name equals: #language;
+		assert: (subject associations at: 1) key equals: #language;
+		assert: (subject associations at: 1) value isNil;
+		assert: anUndefinedObject isNil
+]
+
 { #category : #tests }
 MicArgumentsSplitterTest >> testHasNonDefaultValue [
 	| subject |
