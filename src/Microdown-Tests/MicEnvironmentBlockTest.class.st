@@ -37,6 +37,27 @@ to
 	self assert: env children first text equals: 'to'.
 ]
 
+{ #category : #'as yet unclassified' }
+MicEnvironmentBlockTest >> testEnvironmentClosingNotEatingClosingCharacter_amp [
+
+	"SmallAmp has derived this test from `MicEnvironmentBlockTest>>#testEnvironmentClosingNotEatingClosingCharacter` by regenerating its assertions.
+	This test can cover this part:
+	*	In `MicEnvironmentBlock>> #extractFirstLineFrom:` from 225 to 243:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ lineWithoutMarkup`
+		Dynamic state: {#lineWithoutMarkup->'card'}
+		Mutant id: RemoveCaretOperator#MicEnvironmentBlock#extractFirstLineFrom:#225#243
+"
+
+	<madeBySmallAmp>
+	| root env |
+	env := (parser parse: '<!card
+to
+
+!>') children first.
+	self assert: env firstLine equals: 'card'
+]
+
 { #category : #'tests - extensions' }
 MicEnvironmentBlockTest >> testEnvironmentIsCreatedWhenTagDoesNotMatch [
 
