@@ -404,6 +404,24 @@ MicTextualMicrodownExporterTest >> testOrderedListWithNested [
 	self verifyObtain: factory orderedListWithTwoItemsBoldFirstSample  
 ]
 
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testOrderedListWithNested_amp_A8 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testOrderedListWithNested` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #folderName` from 13 to 19:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ 'mic'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicTextualMicrodownExporter#folderName#13#19
+"
+
+	<madeBySmallAmp>
+	| aString |
+	aString := visitor folderName.
+	self assert: aString equals: 'mic'
+]
+
 { #category : #'tests - list' }
 MicTextualMicrodownExporterTest >> testOrderedListWithStrike [
 
