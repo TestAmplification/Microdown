@@ -424,6 +424,81 @@ Color >> asMorph
 	self assert: code label equals: 'scr:asMorphInColor'.
 ]
 
+{ #category : #'as yet unclassified' }
+MicCodeBlockTest >> testSingleBlockWithArgumentsWithFormat_amp_D8_L10 [
+
+	"
+	```language=pharo&caption=Getting a morph for an instance of ==Color==&label=scr:asMorphInColor
+Color >> asMorph
+    ^ Morph new color: self
+	```
+	"
+
+	<smallAmpCoveres:
+	'RemoveCaretOperator#MicCodeBlock class#defaultLanguage#18#26'>
+	<smallAmpFrom:
+	'MicCodeBlockTest>>#testSingleBlockWithArgumentsWithFormat'>
+	<madeBySmallAmp>
+	| source root code textBody argument aMicroDownParser |
+	textBody := 'Color >> asMorph
+    ^ Morph new color: self'.
+	argument := '&4ZmN±sA<U1#*D`S0Q;~%J9J(f2gLnE@bP*):AU§^K$B.qsfh&gk}my@.p;&JvPu":2'.
+	source := CodeblockMarkup , argument , String cr , textBody
+	          , String cr , CodeblockMarkup.
+	aMicroDownParser := self parser.
+	root := aMicroDownParser parse: source.
+	aMicroDownParser parse: source.
+
+
+	code := root children first.
+	self
+		assert: code class equals: MicCodeBlock;
+		deny: code hasCaption;
+		assert: code code equals: 'Color >> asMorph
+    ^ Morph new color: self';
+		assert: code hasBody;
+		assert: code hasNonDefaultArguments;
+		deny: code hasNonDefaultLanguage;
+		assert: code arguments class equals: MicArgumentsSplitter;
+		assert: code arguments defaultValue equals: 'Pharo';
+		assert: code arguments isHealthy;
+		assert: code arguments isDictionary;
+		assert: code arguments hasNonDefaultArguments;
+		assert: code arguments capacity equals: 17;
+		assert: code arguments size equals: 5;
+		assert: code arguments keysSortedSafely class equals: Array;
+		assert: code arguments keysSortedSafely size equals: 5;
+		assert: code arguments keysSortedSafely
+		equals: #( #'' #'4ZmN±sA<U1#*D`S0Q;~%J9J(f2gLnE@bP*):AU§^K$B.qsfh'
+			   #'JvPu":2' #'gk}my@.p;' #language );
+		assert: code arguments keys class equals: Array;
+		assert: code arguments keys size equals: 5;
+		assert: code arguments keys
+		equals:
+			#( #language #'' #'4ZmN±sA<U1#*D`S0Q;~%J9J(f2gLnE@bP*):AU§^K$B.qsfh'
+			   #'gk}my@.p;' #'JvPu":2' );
+		assert: code arguments values class equals: Array;
+		assert: code arguments values size equals: 5;
+		assert: code arguments values equals: #( 'Pharo' nil nil nil nil );
+		assert: code arguments dictionaryClass asString
+		equals: 'Dictionary';
+		deny: code arguments hasNonDefaultValue;
+		assert: code arguments associations class equals: Array;
+		assert: code arguments associations size equals: 5;
+		assert: (code arguments associations at: 1) class
+		equals: Association;
+		assert: (code arguments associations at: 2) class
+		equals: Association;
+		assert: (code arguments associations at: 3) class
+		equals: Association;
+		assert: (code arguments associations at: 4) class
+		equals: Association;
+		assert: (code arguments associations at: 5) class
+		equals: Association;
+		assert: code language equals: 'Pharo';
+		deny: code hasLabel
+]
+
 { #category : #'tests - deviation' }
 MicCodeBlockTest >> testThreeBackQuotesClosedByFourQuotes [
 
