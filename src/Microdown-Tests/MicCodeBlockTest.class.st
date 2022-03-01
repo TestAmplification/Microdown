@@ -60,6 +60,112 @@ MicCodeBlockTest >> testCaption [
 	self assert: codeBlock captionElements size equals: 2.
 ]
 
+{ #category : #'as yet unclassified' }
+MicCodeBlockTest >> testCaption_amp_A1 [
+
+	<smallAmpCoveres:
+	'RemoveCaretOperator#MicCodeBlock#extractFirstLineFrom:#349#367'>
+	<smallAmpFrom: 'MicCodeBlockTest>>#testCaption'>
+	<madeBySmallAmp>
+	| codeBlock aClass aString |
+	aClass := self testedClass.
+	self assert: aClass asString equals: 'MicCodeBlock'.
+	codeBlock := aClass new.
+	self
+		assert: aClass asString equals: 'MicCodeBlock';
+		assert: codeBlock class equals: MicCodeBlock;
+		assert: codeBlock code isNil;
+		deny: codeBlock hasLabel;
+		deny: codeBlock hasCaption;
+		assert: codeBlock arguments class equals: OrderedDictionary;
+		assert: codeBlock arguments isCollection;
+		assert: codeBlock arguments isHealthy;
+		assert: codeBlock arguments isDictionary;
+		assert: codeBlock arguments isEmpty;
+		deny: codeBlock arguments isNotEmpty;
+		assert: codeBlock arguments capacity equals: 17;
+		assert: codeBlock arguments size equals: 0;
+		assert: codeBlock arguments keys class equals: Array;
+		assertEmpty: codeBlock arguments keys;
+		assert: codeBlock arguments isEmptyOrNil;
+		assert: codeBlock arguments keysSortedSafely class equals: Array;
+		assertEmpty: codeBlock arguments keysSortedSafely;
+		assert: codeBlock arguments values class equals: Array;
+		assertEmpty: codeBlock arguments values;
+		assert: codeBlock arguments dictionaryClass asString
+		equals: 'Dictionary';
+		assert: codeBlock arguments associations class equals: Array;
+		assertEmpty: codeBlock arguments associations;
+		deny: codeBlock arguments isSequenceable;
+		deny: codeBlock arguments notEmpty.
+	codeBlock caption: '**Here** is a nice caption.'.
+	self
+		assert: codeBlock class equals: MicCodeBlock;
+		assert: codeBlock code isNil;
+		deny: codeBlock hasLabel;
+		assert: codeBlock hasCaption;
+		assert: codeBlock arguments class equals: OrderedDictionary;
+		assert: codeBlock arguments isCollection;
+		assert: codeBlock arguments isHealthy;
+		assert: codeBlock arguments isDictionary;
+		deny: codeBlock arguments isEmpty;
+		assert: codeBlock arguments isNotEmpty;
+		assert: codeBlock arguments capacity equals: 17;
+		assert: codeBlock arguments size equals: 1;
+		assert: codeBlock arguments keys class equals: Array;
+		assert: codeBlock arguments keys size equals: 1;
+		assert: codeBlock arguments keys equals: #( #caption );
+		deny: codeBlock arguments isEmptyOrNil;
+		assert: codeBlock arguments keysSortedSafely class equals: Array;
+		assert: codeBlock arguments keysSortedSafely size equals: 1;
+		assert: codeBlock arguments keysSortedSafely equals: #( #caption );
+		assert: codeBlock arguments values class equals: Array;
+		assert: codeBlock arguments values size equals: 1;
+		assert: (codeBlock arguments values at: 1) class equals: Array;
+		assert: (codeBlock arguments values at: 1) size equals: 2;
+		assert: codeBlock arguments dictionaryClass asString
+		equals: 'Dictionary';
+		assert: codeBlock arguments associations class equals: Array;
+		assert: codeBlock arguments associations size equals: 1;
+		assert: (codeBlock arguments associations at: 1) class
+		equals: Association;
+		deny: codeBlock arguments isSequenceable;
+		assert: codeBlock arguments notEmpty.
+	aString := codeBlock extractFirstLineFrom: '```'.
+	self
+		assert: codeBlock class equals: MicCodeBlock;
+		deny: codeBlock hasCaption;
+		assert: codeBlock code isNil;
+		deny: codeBlock hasNonDefaultArguments;
+		assert: codeBlock language equals: 'Pharo';
+		deny: codeBlock hasNonDefaultLanguage;
+		assert: codeBlock arguments class equals: MicArgumentsSplitter;
+		assert: codeBlock arguments defaultValue equals: 'Pharo';
+		assert: codeBlock arguments isHealthy;
+		assert: codeBlock arguments isDictionary;
+		deny: codeBlock arguments hasNonDefaultArguments;
+		assert: codeBlock arguments capacity equals: 17;
+		assert: codeBlock arguments size equals: 1;
+		assert: codeBlock arguments keysSortedSafely class equals: Array;
+		assert: codeBlock arguments keysSortedSafely size equals: 1;
+		assert: codeBlock arguments keysSortedSafely equals: #( #language );
+		assert: codeBlock arguments keys class equals: Array;
+		assert: codeBlock arguments keys size equals: 1;
+		assert: codeBlock arguments keys equals: #( #language );
+		assert: codeBlock arguments values class equals: Array;
+		assert: codeBlock arguments values size equals: 1;
+		assert: codeBlock arguments values equals: #( 'Pharo' );
+		assert: codeBlock arguments dictionaryClass asString
+		equals: 'Dictionary';
+		deny: codeBlock arguments hasNonDefaultValue;
+		assert: codeBlock arguments associations class equals: Array;
+		assert: codeBlock arguments associations size equals: 1;
+		assert: (codeBlock arguments associations at: 1) class
+		equals: Association;
+		deny: codeBlock hasLabel;
+		assert: aString equals: ''
+]
+
 { #category : #tests }
 MicCodeBlockTest >> testCodeBlockWithNestedCodeBlock [
 	"This test shows that we can write a code block inside a code block but that the later is not interpreter."
