@@ -73,6 +73,38 @@ MicLinkBlockTest >> testLinkAPIToAccessText [
 	self assert: link url equals: '/anUrl'
 ]
 
+{ #category : #'as yet unclassified' }
+MicLinkBlockTest >> testLinkAPIToAccessText_amp [
+
+	"SmallAmp has derived this test from `MicLinkBlockTest>>#testLinkAPIToAccessText` by regenerating its assertions.
+	This test can cover these parts:
+	*	In `MicLinkBlock>> #openingDelimiter` from 21 to 42:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ LinkNameOpenerMarkup`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicLinkBlock#openingDelimiter#21#42
+	*	In `MicLinkBlock>> #kind` from 9 to 19:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ #linkName`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicLinkBlock#kind#9#19
+	*	In `MicLinkBlock>> #reference` from 13 to 23:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ reference`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicLinkBlock#reference#13#23
+"
+
+	<madeBySmallAmp>
+	| link |
+	link := (self parser parse: self linkSample) children first children
+		        first.
+	self
+		assert: link reference class equals: MicFileResourceReference;
+		assert: link openingDelimiter equals: '[';
+		assert: link kind equals: #linkName
+]
+
 { #category : #'tests - link' }
 MicLinkBlockTest >> testLinkAPIToSetText [
 
