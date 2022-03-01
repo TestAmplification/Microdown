@@ -439,6 +439,23 @@ MicTextualMicrodownExporterTest >> testQuote [
 	self verifyObtain: factory quoteSample
 ]
 
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testQuote_amp_D0_A23_L0 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testQuote` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #visitRow:in:at:` from 139 to 167:
+		Operation: ReplaceAndWithEqvMutantOperator
+		Code snippet: `(aTable hasHeader and: i = 1)`
+		Dynamic state: {#i->2}
+		Mutant id: ReplaceAndWithEqvMutantOperator#MicTextualMicrodownExporter#visitRow:in:at:#139#167
+"
+
+	<madeBySmallAmp>
+	visitor visitRow: OrderedCollection new in: MicTableBlock new at: 2.
+	self assert: visitor contents equals: '|'
+]
+
 { #category : #'tests-anchor' }
 MicTextualMicrodownExporterTest >> testRawFormat [
 
