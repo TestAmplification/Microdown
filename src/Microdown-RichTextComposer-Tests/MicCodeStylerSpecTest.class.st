@@ -63,6 +63,26 @@ MicCodeStylerSpecTest >> testStylersAreRegistered [
 	self assert: defaultStyler selector equals: #defaultStyler:
 ]
 
+{ #category : #'as yet unclassified' }
+MicCodeStylerSpecTest >> testStylersAreRegistered_amp [
+
+	"SmallAmp has derived this test from `MicCodeStylerSpecTest>>#testStylersAreRegistered` by regenerating its assertions.
+	This test can cover this part:
+	*	In `MicCodeStylerSpec>> #classSymbol` from 15 to 27:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ classSymbol`
+		Dynamic state: {#classSymbol->#MicCodeStylerSpec}
+		Mutant id: RemoveCaretOperator#MicCodeStylerSpec#classSymbol#15#27
+"
+
+	<madeBySmallAmp>
+	| defaultStyler |
+	defaultStyler := MicCodeStylerSpec styleFor: 'blblbl'.
+	self
+		assert: defaultStyler class equals: MicCodeStylerSpec;
+		assert: defaultStyler classSymbol equals: #MicCodeStylerSpec
+]
+
 { #category : #'tests - stylers' }
 MicCodeStylerSpecTest >> testStylersForText [
 
