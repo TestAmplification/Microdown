@@ -4,6 +4,32 @@ Class {
 	#category : #'Microdown-Tests-Parser'
 }
 
+{ #category : #'as yet unclassified' }
+MicAnchorBlockTest >> testHasProperty_amp [
+
+	"SmallAmp has derived this test from `MicBlockTest>>#testHasProperty` by regenerating its assertions.
+	This test can cover these parts:
+	*	In `MicAnchorBlock>> #hasLabel` from 27 to 33:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ false`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicAnchorBlock#hasLabel#27#33
+	*	In `MicAnchorBlock>> #target` from 9 to 16:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ target`
+		Dynamic state: {#target->nil}
+		Mutant id: RemoveCaretOperator#MicAnchorBlock#target#9#16
+"
+
+	<madeBySmallAmp>
+	| aMicAnchorBlock |
+	aMicAnchorBlock := self instance.
+	self
+		deny: aMicAnchorBlock hasLabel;
+		assert: aMicAnchorBlock target isNil.
+	aMicAnchorBlock propertyAt: #foo put: 'bar'
+]
+
 { #category : #tests }
 MicAnchorBlockTest >> testModifyLabel [
 	| mic |
