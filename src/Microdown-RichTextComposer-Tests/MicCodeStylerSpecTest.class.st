@@ -36,6 +36,32 @@ styledTextFor: aString asFest'.
 	self assert: textColor color red equals: 0.
 ]
 
+{ #category : #'as yet unclassified' }
+MicCodeStylerSpecTest >> testStylerForMethod_amp_U1 [
+
+	"SmallAmp has derived this test from `MicCodeStylerSpecTest>>#testStylerForMethod` by applying some transformations and regenerating its assertions.
+	This test can cover these parts:
+	*	In `MicCodeStylerSpec class>> #codeStylerForPharo:` from 97 to 181:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ MicSmalltalkTextStyler new
+	  isForWorkspace: true;
+	  styledTextFor: aString asText`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicCodeStylerSpec class#codeStylerForPharo:#97#181
+	*	In `MicCodeStylerSpec class>> #defaultStyler:` from 111 to 144:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ self codeStylerForPharo: aString`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicCodeStylerSpec class#defaultStyler:#111#144
+"
+
+	<madeBySmallAmp>
+	| code richText blueLocation textColor |
+	code := 'blue'.
+	richText := MicCodeStylerSpec style: code asLanguage: 'blue'.
+	self assert: richText class equals: Text
+]
+
 { #category : #tests }
 MicCodeStylerSpecTest >> testStylerForSmalltalk [
 	
