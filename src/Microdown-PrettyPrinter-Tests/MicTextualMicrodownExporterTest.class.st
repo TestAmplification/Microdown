@@ -154,6 +154,27 @@ MicTextualMicrodownExporterTest >> testFigureWithItalic [
 	self verifyObtain: factory figureItalicSample
 ]
 
+{ #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testFigureWithItalic_amp_A24 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testFigureWithItalic` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #buildRowHeader:` from 80 to 97:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ builder raw: '|'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicTextualMicrodownExporter#buildRowHeader:#80#97
+"
+
+	<madeBySmallAmp>
+	| aMicMicrodownTextualBuilder |
+	aMicMicrodownTextualBuilder := visitor buildRowHeader:
+		                               OrderedCollection new.
+	self
+		assert: aMicMicrodownTextualBuilder class
+		equals: MicMicrodownTextualBuilder
+]
+
 { #category : #'tests - figure' }
 MicTextualMicrodownExporterTest >> testFigureWithMicroDownMarkup [
 
