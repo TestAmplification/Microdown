@@ -271,6 +271,26 @@ toto'.
 	
 ]
 
+{ #category : #'as yet unclassified' }
+MicEnvironmentBlockTest >> testHasProperty_amp [
+
+	"SmallAmp has derived this test from `MicBlockTest>>#testHasProperty` by regenerating its assertions.
+	This test can cover this part:
+	*	In `MicEnvironmentBlock>> #body` from 8 to 103:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ String streamContents: [ :s | 
+	  self bodyElements do: [ :each | s nextPutAll: each substring ] ]`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicEnvironmentBlock#body#8#103
+"
+
+	<madeBySmallAmp>
+	| aMicEnvironmentBlock |
+	aMicEnvironmentBlock := self instance.
+	self assert: aMicEnvironmentBlock body equals: ''.
+	aMicEnvironmentBlock propertyAt: #foo put: 'bar'
+]
+
 { #category : #'tests - default environment' }
 MicEnvironmentBlockTest >> testParagraphEnvironmentParagraph [
 	| root |
