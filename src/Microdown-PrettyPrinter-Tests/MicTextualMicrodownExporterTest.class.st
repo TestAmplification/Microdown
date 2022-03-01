@@ -155,6 +155,24 @@ MicTextualMicrodownExporterTest >> testFigureWithItalic [
 ]
 
 { #category : #'as yet unclassified' }
+MicTextualMicrodownExporterTest >> testFigureWithItalic_amp_A10 [
+
+	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testFigureWithItalic` by applying some transformations and regenerating its assertions.
+	This test can cover this part:
+	*	In `MicTextualMicrodownExporter>> #folderName` from 13 to 19:
+		Operation: RemoveCaretOperator
+		Code snippet: `^ 'mic'`
+		Dynamic state: nil
+		Mutant id: RemoveCaretOperator#MicTextualMicrodownExporter#folderName#13#19
+"
+
+	<madeBySmallAmp>
+	| aString |
+	aString := visitor folderName.
+	self assert: aString equals: 'mic'
+]
+
+{ #category : #'as yet unclassified' }
 MicTextualMicrodownExporterTest >> testFigureWithItalic_amp_A24 [
 
 	"SmallAmp has derived this test from `MicTextualMicrodownExporterTest>>#testFigureWithItalic` by applying some transformations and regenerating its assertions.
