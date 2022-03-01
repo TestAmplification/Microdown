@@ -80,6 +80,46 @@ MicArgumentsSplitterTest >> testFirstTagWithDelimiter [
 	self assert: (subject defaultValue) equals: 'foo'
 ]
 
+{ #category : #'as yet unclassified' }
+MicArgumentsSplitterTest >> testFirstTagWithDelimiter_amp [
+
+	<smallAmpCoveres:
+	'ReplaceOrWithXorMutantOperator#MicArgumentsSplitter#hasNonDefaultArguments#72#154'>
+	<smallAmpFrom: 'MicArgumentsSplitterTest>>#testFirstTagWithDelimiter'>
+	<madeBySmallAmp>
+	| subject |
+	self
+		subjectUnderTestWith: 'foo|bar=99';
+		assert: subject class equals: MicArgumentsSplitter;
+		assert: subject defaultValue equals: 'foo';
+		assert: subject isHealthy;
+		assert: subject isDictionary;
+		assert: subject hasNonDefaultArguments;
+		assert: subject capacity equals: 17;
+		assert: subject size equals: 2;
+		assert: subject keysSortedSafely class equals: Array;
+		assert: subject keysSortedSafely size equals: 2;
+		assert: subject keysSortedSafely equals: #( #bar #defaultArg );
+		assert: subject keys class equals: Array;
+		assert: subject keys size equals: 2;
+		assert: subject keys equals: #( #defaultArg #bar );
+		assert: subject values class equals: Array;
+		assert: subject values size equals: 2;
+		assert: subject values equals: #( 'foo' '99' );
+		assert: subject dictionaryClass asString equals: 'Dictionary';
+		assert: subject hasNonDefaultValue;
+		assert: subject associations class equals: Array;
+		assert: subject associations size equals: 2;
+		assert: (subject associations at: 1) class equals: Association;
+		assert: (subject associations at: 1) name equals: #defaultArg;
+		assert: (subject associations at: 1) key equals: #defaultArg;
+		assert: (subject associations at: 1) value equals: 'foo';
+		assert: (subject associations at: 2) class equals: Association;
+		assert: (subject associations at: 2) name equals: #bar;
+		assert: (subject associations at: 2) key equals: #bar;
+		assert: (subject associations at: 2) value equals: '99'
+]
+
 { #category : #tests }
 MicArgumentsSplitterTest >> testHasNonDefaultArguments [
 	| subject |
